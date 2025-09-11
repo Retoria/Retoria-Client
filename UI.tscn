@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6ir1bvwiv77y"]
+
+[ext_resource type="Script" uid="uid://cr2ldtko23nt2" path="res://UIChangeMenu.gd" id="1_3b2b5"]
+[ext_resource type="SpriteFrames" uid="uid://bo0xranhodo5u" path="res://LoadingSpinner.gif" id="1_b3bc3"]
+
+[node name="Ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 445.0
+offset_top = 697.0
+offset_right = 100.0
+offset_bottom = 164.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3b2b5")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -13.0
+offset_top = -392.0
+offset_right = 309.0
+offset_bottom = -298.0
+theme_override_font_sizes/normal_font_size = 59
+text = "Loading..."
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(121, -445)
+sprite_frames = ExtResource("1_b3bc3")
+animation = &"gif"
+autoplay = "gif"
+frame_progress = 0.452315
+
+[node name="Node2D" type="Node2D" parent="."]

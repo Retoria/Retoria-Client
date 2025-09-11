@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Retoria"
+run/main_scene="uid://c6ir1bvwiv77y"
+config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/show_image=false
+boot_splash/fullsize=false
+boot_splash/use_filter=false
+config/icon="uid://dxjnrga0tf6b1"
+
+[debug]
+
+file_logging/enable_file_logging.pc=false
+
+[dotnet]
+
+project/assembly_name="RC"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true

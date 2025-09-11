@@ -1,0 +1,15 @@
+[remap]
+
+importer="import_gif_to_sprite_frames"
+type="SpriteFrames"
+uid="uid://bo0xranhodo5u"
+path="res://.godot/imported/LoadingSpinner.gif-039e311488d4c05706ddf767409e98c8.tres"
+
+[deps]
+
+source_file="res://LoadingSpinner.gif"
+dest_files=["res://.godot/imported/LoadingSpinner.gif-039e311488d4c05706ddf767409e98c8.tres"]
+
+[params]
+
+frames_per_second=30
