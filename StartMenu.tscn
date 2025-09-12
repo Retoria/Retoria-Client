@@ -12,6 +12,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="settingsButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 429.0
 offset_top = 265.0
 offset_right = 701.0
