@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://qx8758vdaveb"]
+[gd_scene load_steps=3 format=3 uid="uid://qx8758vdaveb"]
 
 [ext_resource type="Texture2D" uid="uid://3b11mtqf5tx8" path="res://Retoria Logo Wordmark.png" id="1_d3352"]
+[ext_resource type="Script" uid="uid://4ylxmrepggg" path="res://playButton.gd" id="1_ufv5y"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,23 +11,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="settingsButton" type="Button" parent="."]
+offset_left = 429.0
+offset_top = 265.0
+offset_right = 701.0
+offset_bottom = 322.0
+text = "SETTINGS"
+
+[node name="playButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 426.0
 offset_top = 166.0
 offset_right = 698.0
 offset_bottom = 223.0
 text = "PLAY"
+script = ExtResource("1_ufv5y")
 
-[node name="Button" type="Button" parent="Button"]
-layout_mode = 0
-offset_left = 3.0
-offset_top = 99.0
-offset_right = 275.0
-offset_bottom = 156.0
-text = "SETTINGS"
+[node name="Node2D" type="Node2D" parent="playButton"]
 
-[node name="RetoriaLogoWordmark" type="Sprite2D" parent="."]
-position = Vector2(547, 99)
+[node name="RetoriaLogoWordmark" type="Sprite2D" parent="playButton/Node2D"]
+position = Vector2(121, -67)
 scale = Vector2(0.761111, 0.72619)
 texture = ExtResource("1_d3352")

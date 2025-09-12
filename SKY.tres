@@ -1,0 +1,13 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://cyteje2i761lb"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_dbi1d"]
+
+[sub_resource type="Sky" id="Sky_dbi1d"]
+sky_material = SubResource("PhysicalSkyMaterial_dbi1d")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_dbi1d")
+glow_enabled = true
+fog_enabled = true
+volumetric_fog_enabled = true
