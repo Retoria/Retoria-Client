@@ -1,4 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3mkrnb2nawfe"]
+[gd_scene load_steps=5 format=3 uid="uid://c3mkrnb2nawfe"]
+
+[ext_resource type="Script" uid="uid://bffw0plblv246" path="res://camera_3d.gd" id="1_wbfu4"]
 
 [sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_6ubv3"]
 
@@ -8,15 +10,6 @@ sky_material = SubResource("PhysicalSkyMaterial_6ubv3")
 [sub_resource type="Environment" id="Environment_xkndl"]
 background_mode = 2
 sky = SubResource("Sky_wbfu4")
-
-[sub_resource type="Sky" id="Sky_u44n3"]
-
-[sub_resource type="Environment" id="Environment_wbfu4"]
-background_mode = 2
-background_energy_multiplier = 1.84
-sky = SubResource("Sky_u44n3")
-ambient_light_source = 3
-reflected_light_source = 2
 
 [node name="Node3D" type="Node3D"]
 
@@ -31,6 +24,7 @@ light_volumetric_fog_energy = 1.34
 shadow_enabled = true
 sky_mode = 2
 
-[node name="Camera3D" type="Camera3D" parent="WorldEnvironment"]
-environment = SubResource("Environment_wbfu4")
-current = true
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+script = ExtResource("1_wbfu4")
+sensitivity = 0.025
+metadata/_custom_type_script = "uid://bffw0plblv246"
