@@ -18,6 +18,10 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="uid://dxjnrga0tf6b1"
 
+[autoload]
+
+Globals="*res://globals.gd"
+
 [debug]
 
 file_logging/enable_file_logging.pc=false

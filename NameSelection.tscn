@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgoiiqwkws8wg"]
+
+[ext_resource type="Script" uid="uid://npevnvprd5cx" path="res://script.gd" id="1_0pxl0"]
+
+[node name="NameSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0pxl0")
+
+[node name="Feedback" type="Label" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 4.0
+offset_right = 839.0
+offset_bottom = 78.0
+theme_override_font_sizes/font_size = 54
+text = "Insert your name"
+uppercase = true
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 593.0
+offset_right = 882.0
+offset_bottom = 624.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 500.0
+offset_top = 517.0
+offset_right = 720.0
+offset_bottom = 549.0
+text = "OK"
