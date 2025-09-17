@@ -13,22 +13,27 @@ func _ready():
 	host_button.pressed.connect(_on_host_pressed)
 	join_button.pressed.connect(_on_join_pressed)
 
+	# Escuchar señales del multiplayer
+	var multiplayer = get_tree().get_multiplayer()
+	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	multiplayer.connection_failed.connect(_on_connection_failed)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
+
+
 func _on_host_pressed():
 	var entered_name = name_input.text.strip_edges()
 	if entered_name == "":
 		feedback.text = "Name cannot be empty."
-		print("Name cannot be empty.")
 		return
 
 	var port_text = port_input.text.strip_edges()
 	if not port_text.is_valid_int():
 		feedback.text = "Port must be a number."
-		print("Port must be a number.")
 		return
+
 	var port = int(port_text)
 	if port < 1024 or port > 65535:
 		feedback.text = "Port must be between 1024 and 65535."
-		print("Port must be between 1024 and 65535.")
 		return
 
 	Globals.player_name = entered_name
@@ -39,37 +44,33 @@ func _on_host_pressed():
 	var result = peer.create_server(port, MAX_CLIENTS)
 	if result != OK:
 		feedback.text = "Error while creating server"
-		print("Error while creating server")
 		return
 
 	get_tree().get_multiplayer().multiplayer_peer = peer
 	feedback.text = "Server created on port %s with name: %s" % [port, entered_name]
-	print("Server created on port %s with name: %s" % [port, entered_name])
 
 	get_tree().change_scene_to_file("res://Game.tscn")
+
 
 func _on_join_pressed():
 	var entered_name = name_input.text.strip_edges()
 	if entered_name == "":
 		feedback.text = "Name cannot be empty."
-		print("Name cannot be empty.")
 		return
 
 	var ip = ip_input.text.strip_edges()
 	if ip == "":
 		feedback.text = "IP cannot be empty."
-		print("IP cannot be empty.")
 		return
 
 	var port_text = port_input.text.strip_edges()
 	if not port_text.is_valid_int():
 		feedback.text = "Port must be a number."
-		print("Port must be a number.")
 		return
+
 	var port = int(port_text)
 	if port < 1024 or port > 65535:
 		feedback.text = "Port must be between 1024 and 65535."
-		print("Port must be between 1024 and 65535.")
 		return
 
 	Globals.player_name = entered_name
@@ -79,11 +80,22 @@ func _on_join_pressed():
 	var result = peer.create_client(ip, port)
 	if result != OK:
 		feedback.text = "Cant connect to server"
-		print("Cant connect to server")
 		return
 
 	get_tree().get_multiplayer().multiplayer_peer = peer
-	feedback.text = "Connected to %s:%s as %s" % [ip, port, entered_name]
-	print("Connected to %s:%s as %s" % [ip, port, entered_name])
+	feedback.text = "Connecting to %s:%s as %s..." % [ip, port, entered_name]
 
+
+# Señales de conexión
+func _on_connected_to_server():
+	feedback.text = "Successfully connected!"
+	print("Successfully connected!")
 	get_tree().change_scene_to_file("res://Game.tscn")
+
+func _on_connection_failed():
+	feedback.text = "Failed to connect to server."
+	print("Failed to connect to server.")
+
+func _on_server_disconnected():
+	feedback.text = "Lost connection to server."
+	print("Lost connection to server.")
