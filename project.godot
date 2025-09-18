@@ -16,7 +16,8 @@ config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="uid://dj4x1gd715lug"
+config/icon="uid://dxjnrga0tf6b1"
+config/windows_native_icon="uid://dxjnrga0tf6b1"
 
 [autoload]
 
