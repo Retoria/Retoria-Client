@@ -13,7 +13,7 @@ func _ready():
 	host_button.pressed.connect(_on_host_pressed)
 	join_button.pressed.connect(_on_join_pressed)
 
-	# Escuchar señales del multiplayer
+	# Listen multiplayer signals
 	var multiplayer = get_tree().get_multiplayer()
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
 	multiplayer.connection_failed.connect(_on_connection_failed)
@@ -86,7 +86,7 @@ func _on_join_pressed():
 	feedback.text = "Connecting to %s:%s as %s..." % [ip, port, entered_name]
 
 
-# Señales de conexión
+# Connection signals
 func _on_connected_to_server():
 	feedback.text = "Successfully connected!"
 	print("Successfully connected!")
