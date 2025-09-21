@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3wq2ot58mcjy"]
+
+[ext_resource type="Script" path="res://scenes/characters/player.gd" id="1_daui4"]
+[ext_resource type="Texture2D" uid="uid://ltmue1b5ebb0" path="res://icon.svg" id="1_frtks"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55toe"]
+size = Vector2(60, 60)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_o4u40"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_5ao5j"]
+properties/0/path = NodePath(".:text")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_daui4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_frtks")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_55toe")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_o4u40")
+
+[node name="Username" type="Label" parent="."]
+z_index = 50
+offset_left = -39.0
+offset_top = 26.0
+offset_right = 41.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(0, 0.945098, 0, 1)
+horizontal_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="Username"]
+replication_config = SubResource("SceneReplicationConfig_5ao5j")

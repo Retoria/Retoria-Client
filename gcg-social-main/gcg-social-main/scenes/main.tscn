@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://4intjybpv5s6"]
+
+[ext_resource type="PackedScene" uid="uid://b6kl8l4glgkxe" path="res://scenes/ui/player_login/player_login.tscn" id="1_fibsc"]
+[ext_resource type="PackedScene" uid="uid://dwajhddpq8f51" path="res://scenes/ui/main_menu/main_menu.tscn" id="2_qyefe"]
+[ext_resource type="PackedScene" uid="uid://cudifpbd7u4hu" path="res://scenes/components/wall/wall.tscn" id="3_8g0g3"]
+[ext_resource type="Script" path="res://scenes/players.gd" id="3_81rha"]
+[ext_resource type="PackedScene" uid="uid://b571wyts626or" path="res://scenes/ui/options_menu/options_menu.tscn" id="3_f7tt1"]
+[ext_resource type="PackedScene" uid="uid://cle6alqm1uehe" path="res://scenes/components/multiplayer_connection/multiplayer_connection.tscn" id="3_qakxp"]
+[ext_resource type="PackedScene" uid="uid://bnmgufd7m2y27" path="res://scenes/ui/credits_menu/credits_menu.tscn" id="4_b63uw"]
+[ext_resource type="FontFile" uid="uid://dcdq78lly44xv" path="res://assets/fonts/nunito/Nunito.ttf" id="5_6g78f"]
+[ext_resource type="Script" path="res://scenes/kill_server.gd" id="6_6uen7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1aih0"]
+font = ExtResource("5_6g78f")
+font_size = 24
+outline_size = 5
+shadow_size = 11
+shadow_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node2D"]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="PlayerLogin" parent="HUD" instance=ExtResource("1_fibsc")]
+
+[node name="MultiplayerConnection" parent="HUD" instance=ExtResource("3_qakxp")]
+
+[node name="MainMenu" parent="HUD" instance=ExtResource("2_qyefe")]
+
+[node name="OptionsMenu" parent="HUD" instance=ExtResource("3_f7tt1")]
+visible = false
+
+[node name="CreditsMenu" parent="HUD" instance=ExtResource("4_b63uw")]
+visible = false
+
+[node name="ServerLabel" type="Label" parent="HUD"]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.5
+offset_top = -23.0
+offset_right = 81.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "< # - SERVER INSTANCE - # >"
+label_settings = SubResource("LabelSettings_1aih0")
+
+[node name="Kill Server" type="Button" parent="HUD/ServerLabel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -43.0
+offset_top = -32.0
+offset_right = 43.0
+offset_bottom = -1.0
+grow_horizontal = 2
+text = "Kill Server"
+script = ExtResource("6_6uen7")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://scenes/characters/player.tscn")
+spawn_path = NodePath("../Players")
+
+[node name="Players" type="Marker2D" parent="."]
+position = Vector2(342, 133)
+script = ExtResource("3_81rha")
+
+[node name="Wall" parent="." instance=ExtResource("3_8g0g3")]
+position = Vector2(128, 231)
+scale = Vector2(-0.719015, 19.8856)
+
+[node name="Wall2" parent="." instance=ExtResource("3_8g0g3")]
+position = Vector2(636, 231)
+scale = Vector2(-0.719015, 19.8856)
+
+[node name="Wall3" parent="." instance=ExtResource("3_8g0g3")]
+position = Vector2(385, 422)
+rotation = 1.5708
+scale = Vector2(-0.72, 24.84)
+
+[node name="Wall4" parent="." instance=ExtResource("3_8g0g3")]
+position = Vector2(382, 40)
+rotation = 1.5697
+scale = Vector2(-0.719015, 24.806)
+
+[connection signal="username_requested" from="HUD/PlayerLogin" to="Players" method="_on_player_login_username_requested"]
+[connection signal="client_disconnected" from="HUD/MultiplayerConnection" to="Players" method="_on_multiplayer_connection_client_disconnected"]
+[connection signal="pressed" from="HUD/ServerLabel/Kill Server" to="HUD/ServerLabel/Kill Server" method="_on_pressed"]
+[connection signal="username_available" from="Players" to="HUD/PlayerLogin" method="_on_players_username_available"]
+[connection signal="username_unavailable" from="Players" to="HUD/PlayerLogin" method="_on_players_username_unavailable"]
